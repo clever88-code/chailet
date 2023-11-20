@@ -33,4 +33,29 @@ class booking(models.Model):
 
     def __str__(self):
         return f'№{self.id} Зал.{self.table_booking} Дата {self.date}'
+
+
+
+class News(models.Model):
+    date = models.DateTimeField(default=timezone.now, verbose_name = 'Дата cоздание новости')
+    title = models.TextField('Название новости')
+    description = models.TextField('Новостной текс')
+    image = models.ImageField(null=True, blank=True, upload_to="image/")
     
+    class Meta:
+        #managed = False
+        db_table = 'News'
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+
+class Menu(models.Model):
+    title = models.CharField(max_length=128, verbose_name='Название блюда')
+    image = models.ImageField(null=True, blank=True, upload_to="menu/")
+    content = models.TextField('Состав')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        db_table = 'Menu'
+        verbose_name = 'Меню'
+        verbose_name_plural = 'Меню'

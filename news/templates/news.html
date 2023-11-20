@@ -1,0 +1,24 @@
+{% extends 'main/general.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Новости{% endblock  %}
+
+{% block  body %}
+{% load static %}
+
+<div class="container">
+    {% for app in News %}
+    <li class="list-group-item my-2 rounded">
+        <div class="fw-bold p-2">Дата: <span class="fw-normal">{{ app.date }}</span></div>
+        <div class="fw-bold p-2">Название: <span class="fw-normal">{{ app.title }}</span></div>
+        <div class="fw-bold p-2"><img src="{{ app.image.url }}" alt="Изображение"></div>
+        <div class="fw-bold p-2">Текс: <span class="fw-normal">{{ app.description }}</span></div>
+    </li>
+    {% empty %}
+        <p>Новстей нету!</p>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}
